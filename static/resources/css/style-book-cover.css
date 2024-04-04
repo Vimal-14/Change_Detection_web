@@ -1,0 +1,222 @@
+/* -------------------------------------------------- */
+/* Basic setup */
+/* -------------------------------------------------- */
+
+:root {
+  --base-color: #96281b;
+  --darker-shade: #5c1911;
+  --lighter-shade: #d03725;
+  --text-color-normal: #222;
+  --text-color-dark-mode: #fff;
+  --background-color-normal: #fff;
+  --background-color-dark-mode: #222;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+html, body {
+  background: var(--background-color-normal);
+  color: var(--text-color-normal);
+  font-family: 'Cardo', serif;
+  font-weight: 400;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: background-color 0.8s;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:after {
+  content: '.';
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* -------------------------------------------------- */
+/* Reusable components */
+/* -------------------------------------------------- */
+
+.row {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* -------------------------------------------------- */
+/* Home button and dark mode switches */
+/* -------------------------------------------------- */
+
+.home-button, .dark-mode-switch {
+  top: 15px;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 120%;
+  cursor: pointer;
+  color: var(--base-color);
+  border: 2px solid var(--base-color);
+  background-color: var(--background-color-normal);
+  transition: color 0.8s, border 0.8s, background-color 0.8s;
+}
+
+.home-button:hover, .dark-mode-switch:hover {
+  border: 2px solid var(--base-color);
+}
+
+.home-button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.home-button:hover {
+  color: var(--text-color-dark-mode);
+  background-color: var(--base-color);
+}
+
+.dark-mode-switch {
+  position: fixed;
+  right: 20px;
+}
+
+.dark-mode-switch:hover {
+  color: var(--base-color);
+  background-color: var(--background-color-dark-mode);
+}
+
+/* -------------------------------------------------- */
+/* Header */
+/* -------------------------------------------------- */
+
+h1, h2 {
+  margin: 0;
+  padding: 0;
+  transition: color 0.8s;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 200%;
+  margin-top: 75px;
+  margin-bottom: 5px;
+}
+
+h2 {
+  font-size: 130%;
+  margin-bottom: 10px;
+}
+
+/* -------------------------------------------------- */
+/* Main */
+/* -------------------------------------------------- */
+
+.book-cover {
+  display: block;
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+  width: 320px;
+  height: auto;
+}
+
+.button {
+  display: inline-block;
+  color: var(--base-color);
+  padding: 10px 20px;
+  border: 1px solid var(--base-color);
+  border-radius: 50px;
+  transition: color 0.8s, background-color 0.8s, border-color 0.8s;
+  margin-top: 20px;
+}
+
+.button:hover {
+  color: var(--text-color-dark-mode);
+  background-color: var(--darker-shade);
+  border-color: var(--darker-shade);
+}
+
+/* ----- Contents ----- */
+h3 {
+  font-weight: 400;
+  margin-bottom: 15px;
+  transition: color 0.8s;
+}
+
+article li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+article a {
+  color: var(--base-color);
+  border-bottom: 1px solid transparent;
+  transition: color 0.8s, border-bottom 0.8s;
+}
+
+article a:hover {
+  border-bottom: 1px solid var(--base-color);
+}
+
+/* -------------------------------------------------- */
+/* Dark mode */
+/* -------------------------------------------------- */
+
+.darkened-home-button {
+  color: var(--base-color);
+  border: 2px solid var(--base-color);
+  background-color: var(--background-color-dark-mode);
+}
+
+.darkened-switch {
+  color: var(--base-color);
+  border: 2px solid var(--base-color);
+  background-color: var(--background-color-dark-mode);
+  transition: color 0.8s, border 0.8s, background-color 0.8s;
+}
+
+.darkened-switch:hover {
+  color: var(--base-color);
+  border: 2px solid var(--base-color);
+  background-color: var(--background-color-normal);
+}
+
+.darkened-header {
+  color: var(--text-color-dark-mode);
+}
+
+.darkened-button {
+  color: var(--lighter-shade);
+  border-color: var(--lighter-shade);
+}
+
+.darkened-button:hover {
+  color: var(--text-color-dark-mode);
+  background-color: var(--base-color);
+  border-color: var(--base-color);
+}
+
+.darkened-link {
+  color: var(--lighter-shade);
+}
+
+.darkened-link:hover {
+  border-bottom: 1px solid var(--lighter-shade);
+}
+
+.darkened-background {
+  background-color: var(--background-color-dark-mode);
+}

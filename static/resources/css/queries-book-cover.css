@@ -1,0 +1,74 @@
+@media (max-width: 1200px) {
+  /* ----- Basic setup ----- */
+  .row {
+    padding: 0 2%;
+  }
+}
+
+@media (max-width: 700px) {
+  /* ----- Header ----- */
+  h1 {
+    font-size: 180%;
+  }
+
+  /* ----- Book cover ----- */
+  .book-cover {
+    width: 300px;
+  }
+}
+
+@media (max-width: 650px) {
+  /* ----- Book cover ----- */
+  .book-cover {
+    width: 250px;
+  }
+}
+
+@media (max-width: 550px) {
+  /* ----- Header ----- */
+  header {
+    text-align: center;
+  }
+
+  /* ----- Main body ----- */
+  aside.col, article.col {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* ------ Book cover & button ----- */
+  .book-cover {
+    display: none;
+  }
+
+  .button {
+    margin-top: 15px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* ----- Contents ----- */
+  h3 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+  }
+
+  article .row {
+    padding: 0;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 449px) {
+  /* ----- Contents ----- */
+  h3 {
+    text-align: center;
+  }
+
+  article ul.col {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+}

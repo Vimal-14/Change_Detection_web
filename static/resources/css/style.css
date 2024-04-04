@@ -1,0 +1,326 @@
+/* -------------------------------------------------- */
+/* Basic setup */
+/* -------------------------------------------------- */
+
+:root {
+  --base-color: #96281b;
+  --darker-shade: #5c1911;
+  --lighter-shade: #d03725;
+  --text-color-1: #555;
+  --text-color-2: #fff;
+  --background-color-1: #fff;
+  --background-color-2: #f4f4f4;
+  --background-color-3: #ccc;
+  --footer-color: #222;
+  --sticky-navigation: rgba(255, 255, 255, 0.96);
+  --sticky-navigation-box-shadow: #efefef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+html, body {
+  background: var(--background-color-1);
+  color: var(--text-color-1);
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:after {
+  content: '.';
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* -------------------------------------------------- */
+/* Reusable components */
+/* -------------------------------------------------- */
+
+.row {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 80px 0;
+}
+
+.box {
+  padding: 1%;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 200%;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h2:after {
+  display: block;
+  content: " ";
+  width: 100px;
+  height: 2px;
+  background-color: var(--base-color);
+  margin: 30px auto 0 auto;
+}
+
+.section-description {
+  width: 75%;
+  font-size: 110%;
+  margin: 0 auto 50px auto;
+  line-height: 135%;
+}
+
+h3 {
+  font-size: 113%;
+  margin-bottom: 10px;
+}
+
+/* -------------------------------------------------- */
+/* Header */
+/* -------------------------------------------------- */
+
+header {
+  height: 100vh;
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/old-books-min.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url(img/old-books-min.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/old-books-min.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+header a {
+  color: var(--text-color-2);
+}
+
+/* ----- Navigation bar ----- */
+header nav {
+  padding: 20px 0;
+  font-size: 130%;
+}
+
+.navigation-links {
+  float: right;
+}
+
+.navigation-links li {
+  display: inline-block;
+  margin-right: 85px;
+}
+
+.navigation-links li:last-child {
+  margin-right: 0;
+}
+
+.navigation-links a {
+  padding-bottom: 5px;
+  border-bottom: 1px solid transparent;
+  -webkit-transition: border-bottom-color 0.8s;
+  -o-transition: border-bottom-color 0.8s;
+  transition: border-bottom-color 0.8s;
+}
+
+.navigation-links a:hover {
+  border-bottom-color: var(--lighter-shade);
+}
+
+/* ----- Sticky navigation bar ----- */
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--sticky-navigation);
+  -webkit-box-shadow: 0 2px 2px var(--sticky-navigation-box-shadow);
+          box-shadow: 0 2px 2px var(--sticky-navigation-box-shadow);
+  z-index: 9999;
+  padding: 10px 0;
+}
+
+.sticky .logo, .sticky .navigation-links a, .sticky .mobile-navigation-icon {
+  color: var(--text-color-1);
+}
+
+/* ----- Mobile navigation ----- */
+.mobile-navigation-icon {
+  float: right;
+  cursor: pointer;
+  display: none;
+}
+
+/* ----- Hero text box ----- */
+.hero-text-box {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 1140px;
+}
+
+h1 {
+  margin: 0 0 20px 0;
+  color: var(--text-color-2);
+  font-size: 400%;
+  font-weight: 100;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid var(--base-color);
+  border-radius: 50px;
+  -webkit-transition: background-color 0.8s, border-color 0.8s;
+  -o-transition: background-color 0.8s, border-color 0.8s;
+  transition: background-color 0.8s, border-color 0.8s;
+}
+
+.btn-full {
+  margin-left: 7px;
+  background-color: var(--base-color);
+}
+
+.btn-ghost {
+  margin-left: 12px;
+}
+
+.btn:hover {
+  background-color: var(--darker-shade);
+  border-color: var(--darker-shade);
+}
+
+/* -------------------------------------------------- */
+/* About */
+/* -------------------------------------------------- */
+
+.feature-icon {
+  color: var(--base-color);
+  font-size: 250%;
+  margin-bottom: 10px;
+}
+
+.feature-description {
+  line-height: 120%;
+}
+
+/* -------------------------------------------------- */
+/* Books */
+/* -------------------------------------------------- */
+
+.section-books {
+  background-color: var(--background-color-2);
+}
+
+.booklist li {
+  margin-bottom: 15px;
+}
+
+.booklist li:last-child {
+  margin-bottom: 0;
+}
+
+.booklist a {
+  color: var(--text-color-1);
+  -webkit-transition: color 0.8s;
+  -o-transition: color 0.8s;
+  transition: color 0.8s;
+  font-size: 110%;
+  color: #96281b;
+}
+
+.booklist a:hover {
+  color: var(--base-color);
+}
+
+/* -------------------------------------------------- */
+/* Contact */
+/* -------------------------------------------------- */
+
+.section-contact label, .section-contact input, .section-contact textarea {
+  padding: 0.5%;
+}
+
+.section-contact label {
+  text-align: right;
+}
+
+.section-contact input, .section-contact textarea {
+  width: 550px;
+  border: 1px solid var(--background-color-3);
+  border-radius: 3px;
+}
+
+.section-contact textarea {
+  height: 150px;
+}
+
+.button button {
+  display: block;
+  margin: auto;
+  color: var(--text-color-2);
+  margin-top: 10px;
+}
+
+.button button:hover {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------- */
+/* Footer */
+/* -------------------------------------------------- */
+
+footer {
+  padding: 30px 0;
+  background-color: var(--footer-color);
+}
+
+footer p {
+  color: var(--text-color-2);
+  text-align: center;
+}
+
+footer a {
+  color: var(--lighter-shade);
+}
+
+/* -------------------------------------------------- */
+/* Animations */
+/* -------------------------------------------------- */
+
+.features {
+  opacity: 0;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.features.animated {
+  opacity: 1;
+}

@@ -1,0 +1,6 @@
+@media (max-width: 800px) {
+  /* ----- Basic setup ----- */
+  .row {
+    padding: 0 4%;
+  }
+}

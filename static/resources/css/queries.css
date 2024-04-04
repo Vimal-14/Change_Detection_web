@@ -1,0 +1,295 @@
+@media (max-width: 1200px) {
+  /* ----- Basic setup ----- */
+  .row {
+    padding: 0 2%;
+  }
+
+  /* ----- Hero text & navigation ----- */
+  .navigation-links li {
+    margin-right: 60px;
+  }
+
+  .navigation-links li:last-child {
+    margin-right: 30px;
+  }
+
+  .hero-text-box {
+    width: 100%;
+    padding: 0 2%;
+  }
+}
+
+@media (max-width: 1000px) {
+  /* ----- Contact ----- */
+  .section-contact input, .section-contact textarea {
+    width: 500px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* ----- About ----- */
+  .section-description {
+    width: 85%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  /* ----- Basic setup ----- */
+  section {
+    padding: 60px 0;
+  }
+
+  /* ----- Navigation ----- */
+  .navigation-links li {
+    margin-right: 35px;
+  }
+
+  .navigation-links li:last-child {
+    margin-right: 20px;
+  }
+
+  /* ----- Hero text ----- */
+  h1 {
+    font-size: 350%;
+  }
+
+  /* ----- Features ------ */
+  .features div {
+    width: 50%;
+    padding: 1%;
+    margin: 0;
+  }
+
+  .features div:nth-child(3n), .features div:last-child {
+    margin-top: 15px;
+  }
+
+  /* ----- Books ----- */
+  .booklist a {
+    font-size: 95%;
+  }
+
+  /* ----- Contact ----- */
+  .section-contact input, .section-contact textarea {
+    width: 450px;
+  }
+}
+
+@media (max-width: 700px) {
+  /* ----- Basic setup ----- */
+  section {
+    padding: 50px 0;
+  }
+
+  /* ----- Navigation ----- */
+  .navigation-links li {
+    margin-right: 25px;
+  }
+
+  /* ----- Hero text ----- */
+  h1 {
+    font-size: 300%;
+  }
+
+  /* ----- Mobile navigation ----- */
+  .navigation-links {
+    display: none;
+  }
+
+  .mobile-navigation-icon {
+    display: block;
+  }
+
+  /* ----- Books ----- */
+  .booklist a {
+    font-size: 90%;
+  }
+
+  /* ----- Contact ----- */
+  .section-contact input, .section-contact textarea {
+    width: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* ----- Navigation ----- */
+  .logo {
+    display: none;
+  }
+
+  .navigation-links li {
+    margin-right: 40px;
+  }
+
+  .navigation-links li:last-child {
+    margin-right: 40px;
+  }
+
+  /* ----- Contact ----- */
+  .section-contact input, .section-contact textarea {
+    width: 350px;
+  }
+}
+
+@media (max-width: 500px) {
+  /* ----- Basic setup ----- */
+  section {
+    padding: 40px 0;
+  }
+
+  /* ----- Reusable components ----- */
+  h2 {
+    font-size: 160%;
+  }
+
+  /* ----- Navigation ----- */
+  .navigation-links li {
+    margin-right: 20px;
+    font-size: 90%;
+  }
+
+  /* ----- About ----- */
+  .section-description {
+    width: 100%;
+  }
+
+  /* ----- Books ----- */
+  .booklist .box {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .booklist .box:first-child {
+    margin-bottom: 15px;
+  }
+
+  /* ----- Contact ----- */
+  .section-contact input, .section-contact textarea {
+    width: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  /* ----- Reusable components ----- */
+  h2 {
+    font-size: 130%;
+  }
+
+  /* ----- Navigation ----- */
+  .navigation-links li {
+    margin-right: 15px;
+    font-size: 80%;
+  }
+
+  .navigation-links li:last-child {
+    margin-right: 15px;
+  }
+
+  /* ----- Hero text ----- */
+  h1 {
+    font-size: 250%;
+  }
+
+  /* ----- Features ----- */
+  .features {
+    opacity: 1;
+    -webkit-animation-duration: 0s;
+            animation-duration: 0s;
+  }
+
+  .features div {
+    width: 100%;
+  }
+
+  .features div:nth-child(2n), .features div:nth-child(3n), .features div:last-child {
+    margin-top: 20px;
+  }
+
+  .feature-icon {
+    margin-bottom: 0px;
+  }
+
+  /* ----- Contact ----- */
+  .section-contact label, section-contact input, .section-contact textarea {
+    display: block;
+  }
+
+  .section-contact label {
+    text-align: left;
+  }
+
+  section-contact input, .section-contact textarea {
+    width: 300px;
+  }
+
+  /* ----- Footer ----- */
+  footer {
+    padding: 15px 0;
+  }
+
+  footer p {
+    font-size: 80%;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 399px)  {
+  /* ----- Reusable components ----- */
+  h2 {
+    font-size: 100%;
+    margin-bottom: 20px;
+  }
+
+  h2:after {
+    margin-top: 20px;
+  }
+
+  .section-description {
+    font-size: 90%;
+  }
+
+  /* ----- Navigation ----- */
+  .navigation-links li {
+    margin-right: 10px;
+    font-size: 65%;
+  }
+
+  .navigation-links li:last-child {
+    margin-right: 10px;
+  }
+
+  /* ----- Hero text ----- */
+  h1 {
+    font-size: 200%;
+  }
+
+  .btn {
+    padding: 7px 14px;
+    font-size: 80%;
+  }
+
+  /* ----- Features ----- */
+  .features {
+    font-size: 85%;
+  }
+
+  .features div:nth-child(2n), .features div:nth-child(3n), .features div:last-child {
+    margin-top: 10px;
+  }
+
+  /* ----- Books ----- */
+  .booklist a {
+    font-size: 85%;
+  }
+
+  /* ----- Contact ----- */
+  .section-contact input, .section-contact textarea {
+    width: 280px;
+  }
+
+  /* ----- Footer ----- */
+  footer p {
+    font-size: 70%;
+  }
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Change Detectives · Image Change Detection with AI</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Change Detectives - Detect image changes using advanced AI models like LeNet, ResNet, UNet, ensuring high accuracy.">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/css/normalize.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/css/grid.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/css/animate.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='resources/css/style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='resources/css/queries.css')}}">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300&display=swap" rel="stylesheet">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static',filename='resources/favicons/apple-touch-icon.png')}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',filename='resources/favicons/favicon-32x32.png')}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static',filename='resources/favicons/favicon-16x16.png')}}">
+  <link rel="manifest" href="{{url_for('static',filename='resources/favicons/site.webmanifest')}}">
+  <link rel="mask-icon" href="{{url_for('static',filename='resources/favicons/safari-pinned-tab.svg')}}" color="#96281b">
+  <link rel="shortcut icon" href="{{url_for('static',filename='resources/favicons/favicon.ico')}}">
+  <meta name="msapplication-TileColor" content="#96281b">
+  <meta name="msapplication-config" content="{{url_for('static',filename='resources/favicons/browserconfig.xml')}}">
+  <meta name="theme-color" content="#96281b">
+</head>
+
+<body>
+  <!-- Section: Home -->
+  <header>
+    <nav>
+      <div class="row">
+        <a href="#" class="logo"><ion-icon name="eye"></ion-icon>Change Detectives</a>
+
+        <a class="mobile-navigation-icon js--mobile-navigation-icon">
+          <ion-icon name="menu"></ion-icon>
+        </a>
+        
+        <ul class="navigation-links js--navigation-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#section-about">About</a></li>
+          <li><a href="#section-features">Features</a></li>
+          <li><a href="#section-contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="hero-text-box">
+      <h1>Image Change Detection<br>with AI Models.</h1>
+      <a href="{{url_for('upload')}}" class="btn btn-full">Try Now</a>
+      <a href="#section-about" class="btn btn-ghost">Learn More</a>
+    </div>
+  </header>
+
+  <!-- Section: About -->
+  <section class="section-about js--section-about" id="section-about">
+    <div class="row">
+      <h2>Empowering Change Detection.</h2>
+      <p class="section-description">Change Detectives is dedicated to providing advanced image change detection solutions using state-of-the-art AI models.</p>
+    </div>
+  </section>
+
+  <!-- Section: Features -->
+  <section class="section-features" id="section-features">
+    <div class="row">
+      <h2>Our Advanced AI Models</h2>
+    </div>
+
+    <div class="row features js--features">
+      <div class="col span-1-of-3">
+        <ion-icon class="feature-icon" name="images"></ion-icon>
+        <h3>ResNet + UNet</h3>
+        <p class="feature-description">ResNet + UNet is a merged model consisting of two Neural Network models.</p>
+      </div>
+
+      <div class="col span-1-of-3">
+        <ion-icon class="feature-icon" name="construct"></ion-icon>
+        <h3>ResNet</h3>
+        <p class="feature-description">ResNet is a deep residual learning framework, ideal for detecting subtle changes in images.</p>
+      </div>
+
+      <div class="col span-1-of-3">
+        <ion-icon class="feature-icon" name="cube"></ion-icon>
+        <h3>UNet</h3>
+        <p class="feature-description">UNet is particularly effective for image segmentation tasks, such as identifying changed regions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Contact -->
+  <section class="section-contact" id="section-contact">
+    <div class="row">
+      <h2>Get in Touch</h2>
+    </div>
+
+    <form action="#" method="post">
+      <div class="row">
+        <label for="name" class="col span-1-of-4">Name:</label>
+        <input type="text" id="name" name="user_name" class="col span-3-of-4" required>
+      </div>
+
+      <div class="row">
+        <label for="email" class="col span-1-of-4">Email:</label>
+        <input type="email" id="email" name="user_mail" class="col span-3-of-4" required>
+      </div>
+
+      <div class="row">
+        <label for="message" class="col span-1-of-4">Message:</label>
+        <textarea name="user_message" id="message" class="col span-3-of-4" required></textarea>
+      </div>
+
+      <div class="button">
+        <button type="submit" class="btn btn-full">Send Message</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Section: Footer -->
+  <footer>
+    <div class="row">
+      <p>Website designed and developed by <a href="">Sumit The Smarty</a>.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  <script src="{{url_for('static',filename='vendors/js/jquery.waypoints.min.js')}}"></script>
+  <script src="{{url_for('static',filename='resources/js/script.js')}}"></script>
+</body>
+</html>

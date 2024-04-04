@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Upload Images · Change Detectives</title>
+
+  <!-- Link to your CSS files -->
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/css/normalize.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/css/grid.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/css/animate.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='resources/css/style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='resources/css/queries.css')}}">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300&display=swap" rel="stylesheet">
+
+  <!-- Link to your favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',filename='resources/favicons/favicon-32x32.png')}}">
+
+  <!-- Optional: Add your custom styles here -->
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #96281b; /* Color for the h1 tag */
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #96281b;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #7c2016;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Upload Your Images</h1>
+    <p>Please upload the image you want to analyze for changes.</p>
+
+    <form id="uploadForm" action="{{url_for('upload')}}" method="POST" enctype="multipart/form-data">
+      <label for="imageFile">Select Image:</label>
+      <input type="file" id="imageFile" name="imageFile" accept="image/png" required>
+      <button type="submit">Upload and Analyze</button>
+    </form>
+    
+  </div>
+</body>
+</html>
