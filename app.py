@@ -5,6 +5,8 @@ import torchvision
 from PIL import Image
 import torch.nn as nn
 import torch.nn.functional as F
+import numpy as np
+import cv2
 import io
 import matplotlib.pyplot as plt
 app = Flask(__name__)
@@ -141,7 +143,7 @@ class ResNetUNet(nn.Module):
 
 
 model = ResNetUNet(in_channels=3, out_channels=2, resnet_type="resnet34").to(device)
-model.load_state_dict(torch.load('Change_Detection_model.pth', map_location=device))
+model.load_state_dict(torch.load('Change_Detection_model_best.pth', map_location=device))
 model.eval()
 
 # Define transformations
@@ -151,33 +153,52 @@ image_transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
+def generate_change_mask(old_mask, new_mask):
+    # Compare old and new masks pixel by pixel
+    change_mask = (old_mask != new_mask).float()
+    
+    # Example: Apply post-processing or filtering to refine the change mask
+    
+    return change_mask
+
 # Function to predict mask and plot examples
-def predict_and_save(model, image, save_path):
+# def predict_and_save(model, image, save_path):
+def predict_changes_and_save(model, old_image, new_image, save_path):
     model.eval()
     
     with torch.no_grad():
-        output = model(image.unsqueeze(0).to(device)).cpu()
+        old_output = model(old_image.unsqueeze(0).to(device)).cpu()
+        new_output = model(new_image.unsqueeze(0).to(device)).cpu()
         
-    pred_mask = torch.argmax(output, dim=1)
+    old_mask = torch.argmax(old_output, dim=1)
+    new_mask = torch.argmax(new_output, dim=1)
     
-    # Plot the image and predicted mask
-    plt.figure(figsize=(8, 4))
-
-    plt.subplot(1, 2, 1)
-    plt.imshow(transforms.ToPILImage()(image.cpu().squeeze()))  # Convert tensor to PIL image
-    plt.axis("off")
-    plt.title('Input Image')
-
-    plt.subplot(1, 2, 2)
-    plt.imshow(pred_mask.squeeze(), cmap='gray')  # Assuming pred_mask is a single channel image
-    plt.axis("off")
-    plt.title('Predicted Mask')
-
-    plt.tight_layout()
+    # Compare old and new masks to generate a mask highlighting changes
+    change_mask = generate_change_mask(old_mask, new_mask)
     
-    # Save the predicted mask image
-    plt.savefig(save_path)
-    plt.close()
+    # Convert torch tensors to numpy arrays
+    old_image_np = old_image.cpu().numpy().transpose(1, 2, 0)
+    new_image_np = new_image.cpu().numpy().transpose(1, 2, 0)
+    change_mask_np = change_mask.cpu().numpy().squeeze()
+    
+    # Convert old and new images to grayscale
+    old_image_gray = cv2.cvtColor(old_image_np, cv2.COLOR_RGB2GRAY)
+    new_image_gray = cv2.cvtColor(new_image_np, cv2.COLOR_RGB2GRAY)
+    
+    # Create a combined image with old image, new image, and change mask
+    combined_image = np.concatenate((old_image_gray[..., np.newaxis], new_image_gray[..., np.newaxis], change_mask_np[..., np.newaxis]), axis=1)
+    
+    # Convert the combined image to uint8 data type
+    combined_image_uint8 = (combined_image * 255).astype(np.uint8)
+    
+    # Create a PIL Image from the combined image
+    combined_image_pil = Image.fromarray(combined_image_uint8)
+    
+    # Save the combined image
+    combined_image_pil.save(save_path)
+    
+    # Return the saved image file path
+    return save_path
 
 # Route for home page
 @app.route('/')
@@ -189,23 +210,52 @@ def home():
 def upload():
     return render_template('upload.html')
 
+# Update predict function to handle two images and generate change mask
 @app.route('/upload', methods=['POST'])
 def predict():
-    # Receive input image
-    if 'imageFile' not in request.files:
-        return jsonify({'error': 'No image uploaded'}), 400
+    # Receive input images
+    if 'oldImageFile' not in request.files or 'newImageFile' not in request.files:
+        return jsonify({'error': 'Please upload both old and new images'}), 400
 
-    image_file = request.files['imageFile']
-    image_bytes = image_file.read()
-    image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-
-    # Preprocess the input image
-    input_tensor = image_transform(image).unsqueeze(0).to(device)
+    old_image_file = request.files['oldImageFile']
+    new_image_file = request.files['newImageFile']
     
-    # Predict mask and save example
+    old_image_bytes = old_image_file.read()
+    new_image_bytes = new_image_file.read()
+    
+    old_image = Image.open(io.BytesIO(old_image_bytes)).convert("RGB")
+    new_image = Image.open(io.BytesIO(new_image_bytes)).convert("RGB")
+
+    # Preprocess the input images
+    old_input_tensor = image_transform(old_image).unsqueeze(0).to(device)
+    new_input_tensor = image_transform(new_image).unsqueeze(0).to(device)
+    
+    # Predict masks for old and new images
+    with torch.no_grad():
+        old_output = model(old_input_tensor).cpu()
+        new_output = model(new_input_tensor).cpu()
+
+    old_pred_mask = torch.argmax(old_output, dim=1).squeeze()
+    new_pred_mask = torch.argmax(new_output, dim=1).squeeze()
+    
+    # Compute difference mask
+    change_mask = (new_pred_mask != old_pred_mask).float()
+    
+    # Convert to PIL images
+    old_image_pil = Image.open(io.BytesIO(old_image_bytes))
+    new_image_pil = Image.open(io.BytesIO(new_image_bytes))
+    change_mask_pil = transforms.ToPILImage()(change_mask)
+
+    # Combine images and mask
+    combined_image = Image.new('RGB', (old_image_pil.width * 3, old_image_pil.height))
+    combined_image.paste(old_image_pil, (0, 0))
+    combined_image.paste(new_image_pil, (old_image_pil.width, 0))
+    combined_image.paste(change_mask_pil, (old_image_pil.width * 2, 0), mask=change_mask_pil)
+    
+    # Save combined image
     save_path = "predicted_mask.png"
-    predict_and_save(model, input_tensor.squeeze(), save_path)
-    
+    combined_image.save(save_path)
+
     # Return the saved image file
     return send_file(save_path, mimetype='image/png')
 
