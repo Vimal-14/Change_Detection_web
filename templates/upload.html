@@ -86,9 +86,14 @@
     <h1>Upload Your Images</h1>
     <p>Please upload the image you want to analyze for changes.</p>
 
+    
     <form id="uploadForm" action="{{url_for('upload')}}" method="POST" enctype="multipart/form-data">
-      <label for="imageFile">Select Image:</label>
-      <input type="file" id="imageFile" name="imageFile" accept="image/png" required>
+      <label for="oldImageFile">Old Image:</label>
+      <input type="file" id="oldImageFile" name="oldImageFile" accept="image/png" required>
+      
+      <label for="newImageFile">New Image:</label>
+      <input type="file" id="newImageFile" name="newImageFile" accept="image/png" required>
+      
       <button type="submit">Upload and Analyze</button>
     </form>
     

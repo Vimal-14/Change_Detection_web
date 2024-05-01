@@ -210,6 +210,7 @@ def home():
 def upload():
     return render_template('upload.html')
 
+# Update predict function to handle two images and generate change mask
 @app.route('/upload', methods=['POST'])
 def predict():
     # Receive input images
@@ -237,31 +238,26 @@ def predict():
     old_pred_mask = torch.argmax(old_output, dim=1).squeeze()
     new_pred_mask = torch.argmax(new_output, dim=1).squeeze()
     
-    # Convert to numpy arrays of type np.uint8
-    old_pred_mask_np = old_pred_mask.byte().numpy()
-    new_pred_mask_np = new_pred_mask.byte().numpy()
+    # Compute difference mask
+    change_mask = (new_pred_mask != old_pred_mask).float()
     
     # Convert to PIL images
     old_image_pil = Image.open(io.BytesIO(old_image_bytes))
     new_image_pil = Image.open(io.BytesIO(new_image_bytes))
-    old_mask_pil = Image.fromarray(old_pred_mask_np * 255)
-    new_mask_pil = Image.fromarray(new_pred_mask_np * 255)
+    change_mask_pil = transforms.ToPILImage()(change_mask)
 
-    # Combine images and masks
-    combined_image = Image.new('RGB', (old_image_pil.width * 4, old_image_pil.height))
+    # Combine images and mask
+    combined_image = Image.new('RGB', (old_image_pil.width * 3, old_image_pil.height))
     combined_image.paste(old_image_pil, (0, 0))
-    combined_image.paste(old_mask_pil, (old_image_pil.width, 0))
-    combined_image.paste(new_image_pil, (old_image_pil.width * 2, 0))
-    combined_image.paste(new_mask_pil, (old_image_pil.width * 3, 0))
+    combined_image.paste(new_image_pil, (old_image_pil.width, 0))
+    combined_image.paste(change_mask_pil, (old_image_pil.width * 2, 0), mask=change_mask_pil)
     
     # Save combined image
-    save_path = "predicted_masks.png"
+    save_path = "predicted_mask.png"
     combined_image.save(save_path)
 
     # Return the saved image file
     return send_file(save_path, mimetype='image/png')
-
-
 
 
 
