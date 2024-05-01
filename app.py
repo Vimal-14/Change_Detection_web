@@ -210,6 +210,8 @@ def home():
 def upload():
     return render_template('upload.html')
 
+from PIL import ImageEnhance
+
 @app.route('/upload', methods=['POST'])
 def predict():
     # Receive input images
@@ -247,12 +249,16 @@ def predict():
     old_mask_pil = Image.fromarray(old_pred_mask_np * 255)
     new_mask_pil = Image.fromarray(new_pred_mask_np * 255)
 
+    # Enhance old image brightness to match new image
+    enhancer = ImageEnhance.Brightness(old_image_pil)
+    old_image_pil_darkened = enhancer.enhance(0.5)  # Adjust the factor as needed
+    
     # Combine images and masks
-    combined_image = Image.new('RGB', (old_image_pil.width * 4, old_image_pil.height))
-    combined_image.paste(old_image_pil, (0, 0))
-    combined_image.paste(old_mask_pil, (old_image_pil.width, 0))
-    combined_image.paste(new_image_pil, (old_image_pil.width * 2, 0))
-    combined_image.paste(new_mask_pil, (old_image_pil.width * 3, 0))
+    combined_image = Image.new('RGB', (old_image_pil.width * 3, old_image_pil.height))
+    combined_image.paste(old_image_pil_darkened, (0, 0))
+    # combined_image.paste(old_mask_pil, (old_image_pil.width, 0))
+    combined_image.paste(new_image_pil, (old_image_pil.width * 1, 0))
+    combined_image.paste(new_mask_pil, (old_image_pil.width * 2, 0))
     
     # Save combined image
     save_path = "predicted_masks.png"
@@ -260,6 +266,7 @@ def predict():
 
     # Return the saved image file
     return send_file(save_path, mimetype='image/png')
+
 
 
 
